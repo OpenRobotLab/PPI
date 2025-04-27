@@ -1,0 +1,29 @@
+name: lift_tray
+
+task_name: lift_tray
+dataset_task_name: bimanual_lift_tray
+
+dataset:
+  _target_: ppi.dataset.rlbench2_dataset.RLBench2Dataset
+  data_path: data/training_raw/${task.dataset_task_name}/all_variations/episodes # TODO
+  pcd_path: data/training_processed/point_cloud/${task.dataset_task_name}/all_variations/episodes # TODO
+  dino_path: data/training_processed/dino_feature/${task.dataset_task_name}/all_variations/episodes
+  lang_emb_path: data/training_processed/instruction_embeddings.pkl
+  stats_filepath: data/training_processed/norm_stats/norm_stats_${task.dataset_task_name}_${task.dataset.pcd_type}_${task.dataset.prediction_type}_${task.dataset.point_flow_type}.pth
+  point_flow_path: data/training_processed/point_flow/${task.dataset_task_name}/all_variations/episodes # TODO
+  horizon_keyframe: ${horizon_keyframe}
+  horizon_continuous: ${horizon_continuous}
+  pad_before: ${eval:'${n_obs_steps}-1'}
+  pad_after: ${eval:'${n_action_steps}-1'}
+  seed: 42
+  start: 0
+  end: 99
+  pcd_fps: 1024
+  skip_ep: []
+  kp_num: 10
+  val_ratio: 0.2
+  max_train_episodes: 90
+  pcd_type: rgb_pcd_rps6144
+  prediction_type: continuous
+  point_flow_type: rps200
+  add_openess_sampling: false

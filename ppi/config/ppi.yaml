@@ -1,0 +1,123 @@
+defaults:
+  - _self_
+  - task: "box" 
+
+name: train_ppi_8gpus 
+
+
+alg_name: "ppi"
+addition_info: "0417_ppi_test"
+seed: 0
+wandb_name: "ppi_box"
+
+config_name: ${alg_name}
+exp_name: ${name}_${task_name}_${alg_name}_${addition_info}
+ckpt_dir: exp_logs/ckpt
+run_dir: ${ckpt_dir}/${task.dataset_task_name}/${exp_name}_seed${seed}
+
+task_name: ${task.name}
+
+horizon_keyframe: 4 
+horizon_continuous: 50
+n_obs_steps: 1
+n_action_steps: 54
+dataset_obs_steps: ${n_obs_steps}
+
+
+policy:
+  _target_: ppi.policy.ppi.PPI
+  encoder_output_dim: 288 
+  horizon_keyframe: ${horizon_keyframe}
+  horizon_continuous: ${horizon_continuous}
+  n_action_steps: ${n_action_steps}
+  n_obs_steps: ${n_obs_steps}
+
+  noise_scheduler_cfg:
+    num_train_timesteps: 1000
+    prediction_type: epsilon
+
+  num_inference_steps: 1000
+  use_lang: true
+  what_condition: 'ppi'
+  predict_point_flow: true
+  pointcloud_encoder_cfg:
+    in_channels: 387
+    out_channels: ${policy.encoder_output_dim}
+    use_bn: true
+
+
+ema:
+  _target_: ppi.model.diffusion.ema_model.EMAModel
+  update_after_step: 0
+  inv_gamma: 1.0
+  power: 0.75
+  min_value: 0.0
+  max_value: 0.9999
+
+dataloader:
+  batch_size: 128
+  num_workers: 4
+  shuffle: True
+  pin_memory: True
+  persistent_workers: False
+
+val_dataloader:
+  batch_size: 128
+  num_workers: 4
+  shuffle: False
+  pin_memory: True
+  persistent_workers: False
+
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 1.0e-4
+  betas: [0.95, 0.999]
+  eps: 1.0e-8
+  weight_decay: 1.0e-6
+
+training:
+  device: "cuda"
+  seed: ${seed}
+  debug: False
+  resume: False
+  lr_scheduler: cosine
+  lr_warmup_steps: 500
+  num_epochs: 2000
+  gradient_accumulate_every: 1
+  use_ema: True
+  rollout_every: 200
+  checkpoint_every: 50
+  val_every: 50
+  sample_every: 20
+  max_train_steps: null
+  max_val_steps: null
+  tqdm_interval_sec: 0.01
+
+logging:
+  group: ${exp_name}
+  id: null
+  mode: online
+  name: ${addition_info}
+  project: ${wandb_name}
+  resume: true
+  tags:
+  - ${wandb_name}
+
+checkpoint:
+  save_ckpt: True
+  topk:
+    monitor_key: val_loss
+    mode: min 
+    k: 1
+    format_str: 'epoch={epoch:04d}-val_loss={val_loss:.7f}.pth.tar'
+  save_last_ckpt: True
+  save_last_snapshot: False
+
+hydra:
+  job:
+    override_dirname: ${name}
+  run:
+    dir: ${run_dir}
+  sweep:
+    dir: data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}
+    subdir: ${hydra.job.num}
