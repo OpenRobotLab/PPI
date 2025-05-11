@@ -1,7 +1,7 @@
 # Data Preprocession
 
 ## Download our regenerated dataset 
-Our regenerated dataset can be download from [this website](https://github.com/OpenRobotLab/PPI). We recommand put the training data at `$[YOUR_PATH_TO_PPI]/data/training_raw`.
+Our regenerated dataset can be download from [here](https://huggingface.co/datasets/yuyinyang3y/Open-PPI). We recommand put the training data at `$[YOUR_PATH_TO_PPI]/data/training_raw`.
 
 ## Generate necessary labels
 Before running code, follow our [Installation Guide](INSTALLATION.md) for dependencies and environment configuration. 
