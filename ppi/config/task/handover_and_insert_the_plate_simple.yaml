@@ -1,0 +1,31 @@
+name: handover_and_insert_the_plate
+
+task_name: handover_and_insert_the_plate
+dataset_task_name: handover_and_insert_the_plate
+
+dataset:
+  _target_: ppi.dataset.real_dataset.RealDataset
+  data_path: real_data/training_raw/${task.dataset_task_name}
+  pcd_path: real_data/training_processed_simple/point_cloud/${task.dataset_task_name}
+  dino_path: real_data/training_processed_simple/dino_feature/${task.dataset_task_name}
+  lang_emb_path: pretrained_models/instruction_embeddings_real.pkl
+  stats_filepath: real_data/training_processed_simple/norm_stats/norm_stats_${task.dataset_task_name}_${task.dataset.pcd_type}_continuous.pth
+  point_flow_path: real_data/training_processed_simple/point_flow/${task.dataset_task_name}
+  horizon_keyframe: ${horizon_keyframe}
+  horizon_continuous: ${horizon_continuous}
+  pad_before: ${eval:'${n_obs_steps}-1'}
+  pad_after: ${eval:'${n_action_steps}-1'}
+  seed: 42
+  start: 0
+  end: 99
+  pcd_fps: 3072
+  pcd_type: rgb_pcd_rps3072
+  skip_ep: []
+  kp_num: 10
+  val_ratio: 0.2
+  max_train_episodes: 90
+  prediction_type: keyframe_continuous
+  point_flow_type: rps200
+  hist_num: 3 # history number for proprioception
+  add_openess_sampling: False
+  sample_num: 6 # sample times for frames before the change of gripper state

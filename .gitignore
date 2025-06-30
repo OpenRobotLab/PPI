@@ -7,3 +7,4 @@ wandb/
 pretrained_models/
 repos/
 exp_logs/
+exp_logs_real/
