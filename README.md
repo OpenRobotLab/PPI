@@ -125,13 +125,13 @@ torchrun --nnodes 1 --nproc_per_node $ngpus --master_port 10004 ddp_train.py \
 
 
 ## 🤖 Real-World Deployment <a name="real-world"></a>
-*Coming soon.* 
+See [Real-World](docs/REALWORLD.md).
 
 
 ## 📆 TODO <a name="todos"></a>
+- [x] Release the training code of simple-PPI and realworld deployment.
 - [ ] Release the pre-generated datasets and checkpoints.
 - [ ] Release the evaluation code of PPI on RLBench2 experiment.
-- [ ] Release the training code of simple-PPI and realworld deployment.
 
 ## License <a name="license"></a>
 
