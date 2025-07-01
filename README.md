@@ -67,7 +67,7 @@ We evaluate PPI on seven RLBench2 benchmark tasks. Our regenerated dataset addre
 
 **Dataset Options**:
 - Download [Preprocessed Dataset](https://github.com/OpenRobotLab/PPI) (Coming soon!) (recommended).
-- Generate custom data following our [Data Processing Guide](docs/DATA_PREPROCESSION.md).
+- Generate custom data following our [Data Processing Guide](docs/DATA_PREPROCESSION.md). Our regenerated dataset(with object pose metadata) is available [here](https://huggingface.co/datasets/yuyinyang3y/Open-PPI).
 
 
 ### Step 2: Training <a name="training"></a>
@@ -115,12 +115,11 @@ torchrun --nnodes 1 --nproc_per_node $ngpus --master_port 10004 ddp_train.py \
 ### Step 3: Evaluation <a name="evaluation"></a>
 
 #### Checkpoints
-<!-- Relevant checkpoints are available on the [website](https://github.com/OpenRobotLab/PPI). -->
-*Coming soon.* 
+Relevant checkpoints are available [here](https://huggingface.co/datasets/yuyinyang3y/Open-PPI/tree/main/ckpt).
 
 
 #### Inference on RLBench2
-*Coming soon.* 
+See [Inference Guide](docs/INFERENCE.md).
 
 
 
@@ -130,8 +129,9 @@ See [Real-World](docs/REALWORLD.md).
 
 ## 📆 TODO <a name="todos"></a>
 - [x] Release the training code of simple-PPI and realworld deployment.
-- [ ] Release the pre-generated datasets and checkpoints.
-- [ ] Release the evaluation code of PPI on RLBench2 experiment.
+- [ ] Release the pre-generated datasets and data generation code.
+- [x] Release the checkpoints.
+- [x] Release the evaluation code of PPI on RLBench2 experiment.
 
 ## License <a name="license"></a>
 

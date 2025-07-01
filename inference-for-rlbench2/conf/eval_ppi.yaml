@@ -1,0 +1,49 @@
+defaults:
+    - _self_
+    - method: PPI
+
+rlbench:
+    task_name: "box"
+    tasks: [bimanual_push_box]
+    demo_path: your/test/demo/dir
+    lang_path: data/training_processed/instruction_embeddings.pkl   # not used
+    episode_length: 300
+    cameras_pcd: ["over_shoulder_left","over_shoulder_right","overhead","wrist_right","wrist_left","front"]
+    cameras: ["over_shoulder_left","over_shoulder_right","overhead","wrist_right","wrist_left","front"]
+    camera_resolution: [256, 256]
+    scene_bounds: [-0.3, -0.5, 0.6, 0.7, 0.5, 1.6]
+    include_lang_goal_in_obs: True
+    time_in_state: True
+    headless: True
+    gripper_mode: 'BimanualDiscrete'
+    arm_action_mode: 'BimanualEndEffectorPoseViaPlanning'
+    action_mode: 'BimanualMoveArmThenGripper'
+    query_freq: 2
+
+framework:
+    tensorboard_logging: True
+    csv_logging: True
+    gpu: 0
+    logdir: your/log/dir
+    weightsdir: /fs-computility/efm/yangyuyin/PPI/exp_logs/ckpt/${rlbench.tasks[0]}
+    start_seed: 0
+    record_every_n: 5
+
+    eval_envs: 1
+    eval_from_eps_number: 0
+    eval_episodes: 5
+    eval_type: 830
+    eval_save_metrics: False
+    eval_processes: 1
+
+    training_iterations: 100
+    weight_name: ""
+    ckpt_name: ""
+    jump_step: 1
+
+cinematic_recorder:
+    enabled: True
+    camera_resolution: [1280, 720]
+    fps: 30
+    rotate_speed: 0.005
+    save_path: ${framework.logdir}/${rlbench.task_name}/${framework.weight_name}
