@@ -33,4 +33,7 @@ CUDA_VISIBLE_DEVICES=4 python inference-for-rlbench2/eval_ppi.py \
     method.policy.num_inference_steps=1000 \
     method.policy.sam_cameras=["front"]    \
     cinematic_recorder.save_path="your/video/log/dir"
+<<<<<<< HEAD
     
+=======
+>>>>>>> 64b795fbb3a0c530abfe06f57d585c0dc4854a6a
