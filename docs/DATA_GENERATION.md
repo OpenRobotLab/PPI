@@ -2,7 +2,7 @@
 Here we provide the guide for regenerating the RLBench2 dataset with object 6d pose metadata.
 
 ## Environment
-Please refer to [INSTALLATION.md](INSTALLATION.md) for environment configuration. (Please use [my RLBench2 repo](https://github.com/yangyuyin3y/RLBench).)
+Please refer to [INSTALLATION.md](INSTALLATION.md) for environment configuration. (Please use [my RLBench2 repo](https://github.com/yuyinyang3y/RLBench).)
 
 ## Specify the task name and object name
 ### 1. Task Name
