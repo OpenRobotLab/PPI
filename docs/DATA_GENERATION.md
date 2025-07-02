@@ -26,6 +26,6 @@ To get the object name for other tasks, you may refer to the task files under th
 
 ## Run the script
 ```bash
-bash PPI/scripts/data_generation/generator_meta_data.sh
+bash PPI/scripts/data_generation/generate_meta_data.sh
 ```
 
