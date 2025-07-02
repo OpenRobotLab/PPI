@@ -3,6 +3,8 @@
 ## Download our regenerated dataset 
 Our regenerated dataset can be download from [here](https://huggingface.co/datasets/yuyinyang3y/Open-PPI). We recommand put the training data at `$[YOUR_PATH_TO_PPI]/data/training_raw`.
 
+If you want to regenerate the dataset for other tasks in RLBench2, please refer to [DATA_GENERATION.md](DATA_GENERATION.md).
+
 ## Generate necessary labels
 Before running code, follow our [Installation Guide](INSTALLATION.md) for dependencies and environment configuration. 
 

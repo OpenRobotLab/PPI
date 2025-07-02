@@ -55,4 +55,4 @@ bash scripts/inference/evaluate_ppi_ball.sh
 ```
 
 ## Download checkpoints
-Our checkpoints is available [here](https://huggingface.co/datasets/yuyinyang3y/Open-PPI/tree/main/ckpt).
+Our checkpoints are available [here](https://huggingface.co/datasets/yuyinyang3y/Open-PPI/tree/main/ckpt).
