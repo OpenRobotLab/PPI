@@ -10,7 +10,7 @@ export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
 cd /your/path/to/RLBench/tools
 
 python dataset_generator_bimanual.py \
-    --tasks=bimanual_pick_laptop \
+    --tasks=bimanual_lift_ball \
     --save_path=/your/path/to/data/dir \
     --image-size=256x256 \
     --episodes_per_task=1 \
