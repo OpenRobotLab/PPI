@@ -18,7 +18,7 @@ import time
 
 from pdb import set_trace
 from PIL import Image
-from diffusion_policy_3d.model.vision.semantic_feature_extractor import Fusion
+from ppi.model.vision.semantic_feature_extractor import Fusion
 import matplotlib.pyplot as plt
 from pdb import set_trace
 from pyrep.objects.shape import Shape 
